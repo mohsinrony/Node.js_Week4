@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Home Url</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", init);
+
+      async function init() {
+        const options = {
+          method: "POST",
+          body: "firstname=Matt&lastname=River",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        };
+        const data = await fetch("/", options);
+        const jsonData = await data.json();
+        document.getElementById("resultarea").textContent = JSON.stringify(
+          jsonData,
+          null,
+          2
+        );
+      }
+      /*  console.log(init); */
+    </script>
+  </head>
+  <body>
+    <h1>Home Url</h1>
+    <pre id="resultarea"></pre>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Input Form</title>
+    <script>
+      document.addEventListener("DONContentLoaded", init);
+
+      function init() {
+        document.getElementById("submit").addEventListener("click", send);
+      }
+      async function send() {
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("lastname").value;
+
+        const person = {
+          Firstname: firstname,
+          Lastname: lastname,
+        };
+        /* const person = {
+                Firstname : firstname,
+                Lastname: lastname
+            } */
+
+        const options = {
+          method: "POST",
+          body: JSON.stringify(person),
+          headers: { "Content-Type": "application/json" },
+        };
+        const data = await fetch("/", options);
+        const jsonData = await data.json();
+        document.getElementById("resultarea").textContent = JSON.stringify(
+          jsonData,
+          null,
+          2
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Input name</h1>
+    <p>
+      <label for="firstname">First Name</label>
+      <input type="text" id="firstname" />
+    </p>
+    <p>
+      <label for="lastname">First Name</label>
+      <input type="text" id="lastname" />
+    </p>
+    <button id="submit">Submit</button>
+    <pre id="resultarea"></pre>
+  </body>
+</html>
